@@ -1,0 +1,21 @@
+{
+  "parser": "@typescript-eslint/parser",
+  "plugins": [
+		"@typescript-eslint/eslint-plugin",
+		"jest"
+	],
+	"extends": [
+		"eslint:recommended"
+	],
+	"rules": {
+		"semi": ["error", "always"],
+		"indent" : ["error", "tab"],
+		"no-console": ["warn", { "allow": ["warn", "error"]}]
+	},
+	"ignorePatterns": [
+		"dist/"
+	],
+	"env": {
+		"jest/globals": true
+	}
+}
