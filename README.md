@@ -2,17 +2,17 @@
 
 ## Examples
 
-<div style='display: flex; gap: 1em;'>
+Despite 1 letter being different, the entire image is different.
 	<div>
-		<img src='assets/Cyber Circle.png' alt="Cyber Circle Identicon" />
+		<img src='assets/Cyber%20Circle.png' alt='Example 1' />
 		<p>Cyber Circle</p>
 	</div>
 	<div>
-		<img src='assets/KyleSmith0905.png' alt="KyleSmith0905 Identicon" />
+		<img src='assets/Cyber_Circle.png' alt='Example 2' />
 		<p>KyleSmith0905</p>
 	</div>
 	<div>
-		<img src='assets/identicon.png' alt="identicon Identicon" />
+		<img src='assets/Cyber-Circle.png' alt='Example 3' />
 		<p>identicon</p>
 	</div>
 </div>
