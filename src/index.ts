@@ -4,7 +4,6 @@ import setElements from './physics';
 import { AdditionalOptions } from './interface';
 import { fillIncompleteOptions, overrideData } from './utils';
 import { Buffer } from 'buffer';
-import { writeFileSync } from 'fs';
 
 /**
  * Returns a PNG buffer of a cyber circle generated from a string.
@@ -53,6 +52,5 @@ const createIdenticon = (key: string, additionalOptions: AdditionalOptions = {})
 	return dataURL;
 };
 
-writeFileSync('identicon.png', createIdenticon('identicon', {clipped: true}));
 
-export {createIdenticon};
+export { createIdenticon };
