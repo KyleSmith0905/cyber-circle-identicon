@@ -25,11 +25,11 @@ Despite 1 letter being different, the entire image is different.
 			<p>Cyber circle</p>
 		</td>
 		<td>
-			<img src='assets/_Cyber%20Circle.png' alt='Example 5 Cyber Circle' />
+			<img src='assets/_cyber%20Circle.png' alt='Example 5 Cyber Circle' />
 			<p>cyber Circle</p>
 		</td>
 		<td>
-			<img src='assets/_Cyber%20_Circle.png' alt='Example 6 Cyber Circle' />
+			<img src='assets/_cyber%20_circle.png' alt='Example 6 Cyber Circle' />
 			<p>cyber circle</p>
 		</td>
 	</tr>
