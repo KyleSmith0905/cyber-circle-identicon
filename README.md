@@ -7,16 +7,30 @@ Despite 1 letter being different, the entire image is different.
 <table>
 	<tr>
 		<td>
-			<img src='assets/Cyber%20Circle.png' alt='Example 1' />
+			<img src='assets/Cyber%20Circle.png' alt='Example 1 Cyber Circle' />
 			<p>Cyber Circle</p>
 		</td>
 		<td>
-			<img src='assets/Cyber_Circle.png' alt='Example 2' />
+			<img src='assets/Cyber__Circle.png' alt='Example 2 Cyber Circle' />
 			<p>Cyber_Circle</p>
 		</td>
 		<td>
-			<img src='assets/Cyber-Circle.png' alt='Example 3' />
+			<img src='assets/Cyber-Circle.png' alt='Example 3 Cyber Circle' />
 			<p>Cyber-Circle</p>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<img src='assets/Cyber%20_circle.png' alt='Example 4 Cyber Circle' />
+			<p>Cyber circle</p>
+		</td>
+		<td>
+			<img src='assets/_Cyber%20Circle.png' alt='Example 5 Cyber Circle' />
+			<p>cyber Circle</p>
+		</td>
+		<td>
+			<img src='assets/_Cyber%20_Circle.png' alt='Example 6 Cyber Circle' />
+			<p>cyber circle</p>
 		</td>
 	</tr>
 </table>
