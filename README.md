@@ -67,3 +67,13 @@ Returns a PNG buffer of a cyber circle generated from a string.
 Any contribution is greatly appreciated. Feel free to fork the repository and submit a pull request.
 
 I will actively review all issues and pull requests.
+
+### Contributors
+<table>
+	<tr>
+		<td>
+			<img src='assets/KyleSmith0905.png' alt='Kyle Smith contributor cyber circle' />
+			<p>KyleSmith0905</p>
+		</td>
+	</tr>
+</table>
