@@ -6,3 +6,4 @@ coverage/
 
 # Builds
 dist/
+.next/
