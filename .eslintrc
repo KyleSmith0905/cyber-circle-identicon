@@ -5,7 +5,8 @@
 		"jest"
 	],
 	"extends": [
-		"eslint:recommended"
+		"eslint:recommended",
+		"next"
 	],
 	"rules": {
 		"semi": ["error", "always"],
