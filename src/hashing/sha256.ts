@@ -1,25 +1,18 @@
 import { Buffer } from 'buffer';
 import { ROUND_CONSTANTS, DEFAULT_HASH_VALUES, UNSIGNED_INTEGER_MAX } from "./constants";
 import { rightRotate, bufferToChunks, bufferToInteger, formatChunk } from "./utils";
-import { concatStringToBuffer, modulo } from '../utils';
+import { modulo } from '../utils';
 
 const formatBuffer = (buffer: Buffer): Buffer => {
-	let textLength = buffer.byteLength * 8;
-
-	buffer = concatStringToBuffer(buffer, '\u0080');	
-
-	const k = 60 - (buffer.byteLength % 64);
+	const segmentLength = Math.ceil((buffer.byteLength + 5) / 64);
 	
-	for (let i = 0; i < k; i++) {
-		buffer = concatStringToBuffer(buffer, String.fromCharCode(0x00));
-	}
-	
-	buffer = concatStringToBuffer(buffer, String.fromCharCode((textLength / 16777216) % 256));
-	buffer = concatStringToBuffer(buffer, String.fromCharCode((textLength / 65536) % 256));
-	buffer = concatStringToBuffer(buffer, String.fromCharCode((textLength / 256) % 256));
-	buffer = concatStringToBuffer(buffer, String.fromCharCode(textLength % 256));
 
-	return buffer;
+	const newBuffer = Buffer.alloc(segmentLength * 64);
+	buffer.copy(newBuffer);
+	newBuffer.writeUInt8(128, buffer.byteLength);
+	newBuffer.writeUInt32BE(buffer.byteLength * 8, newBuffer.byteLength - 4);
+
+	return newBuffer;
 };
 
 const sha256 = (text: string): string => {
