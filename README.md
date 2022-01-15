@@ -8,29 +8,29 @@ Despite 1 letter being different, the entire image is different.
 	<tr>
 		<td>
 			<img src='assets/Cyber%20Circle.png' alt='Example 1 Cyber Circle' />
-			<p>Cyber Circle</p>
+			<h3>Cyber Circle</h3>
 		</td>
 		<td>
 			<img src='assets/Cyber__Circle.png' alt='Example 2 Cyber Circle' />
-			<p>Cyber_Circle</p>
+			<h3>Cyber_Circle</h3>
 		</td>
 		<td>
 			<img src='assets/Cyber-Circle.png' alt='Example 3 Cyber Circle' />
-			<p>Cyber-Circle</p>
+			<h3>Cyber-Circle</h3>
 		</td>
 	</tr>
 	<tr>
 		<td>
 			<img src='assets/Cyber%20_circle.png' alt='Example 4 Cyber Circle' />
-			<p>Cyber circle</p>
+			<h3>Cyber circle</h3>
 		</td>
 		<td>
 			<img src='assets/_cyber%20Circle.png' alt='Example 5 Cyber Circle' />
-			<p>cyber Circle</p>
+			<h3>cyber Circle</h3>
 		</td>
 		<td>
 			<img src='assets/_cyber%20_circle.png' alt='Example 6 Cyber Circle' />
-			<p>cyber circle</p>
+			<h3>cyber circle</h3>
 		</td>
 	</tr>
 </table>
@@ -87,7 +87,8 @@ I will actively review all issues and pull requests.
 	<tr>
 		<td>
 			<img src='assets/KyleSmith0905.png' alt='Kyle Smith contributor cyber circle' />
-			<p>KyleSmith0905</p>
+			<h3>KyleSmith0905</h3>
+			<p>Owner<p>
 		</td>
 	</tr>
 </table>
