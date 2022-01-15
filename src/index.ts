@@ -2,6 +2,7 @@ import options from './hashing';
 import createPNG from './render';
 import setElements from './physics';
 import type { GradientData, ElementData, CircleData, AdditionalOptions, OverrideOptions, ColorData, CompressionOptions } from './interface';
+import { fillIncompleteOptions, overrideData, validateKey, validateOptions } from './utils';
 import { Buffer } from 'buffer';
 
 /**
@@ -38,18 +39,33 @@ import { Buffer } from 'buffer';
  * @returns A buffer of the cyber circle in PNG format.
  */
 const createIdenticon = (key: string, additionalOptions: AdditionalOptions = {}): Buffer => {
+	validateKey(key);
+	validateOptions(additionalOptions);
 	fillIncompleteOptions(additionalOptions);
-
-	let circleData = options(key);
-
-	circleData.elements = setElements(circleData.elements);
-
-	overrideData(circleData, additionalOptions.overrideData);
-
-	let dataURL = createPNG(circleData, additionalOptions);
-
-	return dataURL;
+	
+	try {
+		let circleData = options(key);
+	
+		circleData.elements = setElements(circleData.elements);
+	
+		overrideData(circleData, additionalOptions.overrideData);
+	
+		let dataURL = createPNG(circleData, additionalOptions);
+	
+		return dataURL;
+	}
+	catch (e) {
+		const error = new Error();
+		error.name = 'Cyber Circle Identicon';
+		error.message = 'An error occured while generating a cyber circle identicon.';
+		error.stack = e.stack;
+		throw error;
+	}
 };
+
+};
+
+export default createIdenticon;
 
 
 export type { GradientData, ElementData, CircleData, AdditionalOptions, OverrideOptions, ColorData, CompressionOptions };
