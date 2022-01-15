@@ -1,0 +1,129 @@
+@import url('https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400;0,700;1,400&display=swap');
+
+html {
+	--primaryColor: hsl(0, 0%, 100%);
+	--secondaryColor: hsl(0, 0%, 97%);
+	--trenaryColor: hsl(0, 0%, 90%);
+	--fonts: 'cabin', Ubuntu, Roboto, Oxygen, Helvetica, -apple-system, BlinkMacSystemFont, Segoe UI, Cantarell, Fira Sans, Droid Sans, Neue, sans-serif;
+}
+
+html,
+body {
+	padding: 0;
+	margin: 0;
+	font-family: var(--fonts);
+}
+
+a {
+	color: inherit;
+	text-decoration: none;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+*:focus {
+	outline: none;
+}
+
+header {
+	background-color: var(--primaryColor);
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}
+
+header > * {
+	margin: 0.3em;
+}
+
+.MarginCentered {
+	margin-left: auto;
+	margin-right: auto;
+	width: fit-content;
+}
+
+.ContentBox {
+	margin: 0em auto;
+	width: 80%;
+	max-width: 60em;
+}
+
+.PillButtons {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.Button {
+	background-color: transparent;
+	border: var(--trenaryColor) solid 0.15em;
+	border-radius: 1em;
+	padding: 0em 0.8em;
+	height: 2.3em;
+	margin: 0.3em 0.3em;
+	font-family: var(--fonts);
+	line-height: 2em;
+	font-size: 1.2em;
+	cursor: pointer;
+	box-shadow: 0em 0em 0em 0em var(--trenaryColor);
+	transition: box-shadow 0ms linear;
+}
+
+.Button > * {
+	margin: 0em;
+}
+
+.Button:focus, .Button:hover {
+	box-shadow: 0em 0em 0em 0.6em var(--primaryColor);
+	transition: box-shadow 1000ms linear;
+}
+
+input[type=color] {
+	width: 6em;
+}
+
+::-webkit-color-swatch {
+	display: none;
+}
+
+input[type=range] {
+	width: 8em;
+	padding: 0em;
+	appearance: none;
+	overflow: hidden;
+	border: none;
+}
+
+::-webkit-slider-thumb {
+	color: #13bba4;
+	width: 0em;
+	cursor: ew-resize;
+	box-shadow: -7.975em 0 0 8em var(--trenaryColor);
+	appearance: none;
+}
+
+::-webkit-slider-runnable-track {
+	border: var(--trenaryColor) solid 0.15em;
+	border-radius: 1em;
+	height: 2.3em;
+	appearance: none;
+}
+
+.MergeBefore {
+	font-size: 1.2em;
+	position: absolute;
+	margin-left: 1.25em;
+	pointer-events: none;
+}
+
+.InputContainer {
+	display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.InputContainer > p {
+	margin: 0;
+	text-align: center;
+}

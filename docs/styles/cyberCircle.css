@@ -1,0 +1,8 @@
+.CyberCircleContainer {
+  border-radius: 50%;
+}
+
+.CyberCircleContainer * {
+  position: absolute;
+  border-radius: 50%;
+}
