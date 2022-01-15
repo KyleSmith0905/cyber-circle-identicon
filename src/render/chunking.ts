@@ -1,5 +1,10 @@
 import { Buffer } from 'buffer';
 import { deflateSync } from 'zlib';
+import { CompressionOptions } from '../interface';
+
+const deflate = (colorBuffer: Buffer, compression: CompressionOptions): Buffer => {
+	return deflateSync(colorBuffer, {level: compression});
+};
 
 const calculateCRC = (buffer: Buffer): number => {
 	let c: number;
@@ -22,7 +27,7 @@ const calculateCRC = (buffer: Buffer): number => {
 	return output;
 };
 
-const writeChunkEnd = (buffer: Buffer): Buffer => {
+const writeChunkIEND = (buffer: Buffer): Buffer => {
 	const length = Buffer.allocUnsafe(4);
 	length.writeUInt32BE(0, 0);
 
@@ -35,7 +40,7 @@ const writeChunkEnd = (buffer: Buffer): Buffer => {
 	return chunk;
 };
 
-const writeChunkStart = (buffer: Buffer, size: number, alpha: boolean): Buffer => {
+const writeChunkIHDR = (buffer: Buffer, size: number, alpha: boolean): Buffer => {
 	const length = Buffer.allocUnsafe(4);
 	length.writeUInt32BE(13, 0);
 	
@@ -59,10 +64,10 @@ const writeChunkStart = (buffer: Buffer, size: number, alpha: boolean): Buffer =
 	return chunk;
 };
 
-const writeChunk = (buffer: Buffer, colorBuffer: Buffer, compression: number) => {
+const writeChunkIDAT = (buffer: Buffer, colorBuffer: Buffer, compression: CompressionOptions) => {
 	const chunkType = Buffer.from('IDAT', 'ascii');
 
-	const chunkData = deflateSync(colorBuffer, {level: compression});
+	const chunkData = deflate(colorBuffer, compression);
 
 	const length = Buffer.allocUnsafe(4);
 	length.writeUInt32BE(chunkData.byteLength);
@@ -76,4 +81,4 @@ const writeChunk = (buffer: Buffer, colorBuffer: Buffer, compression: number) =>
 	return chunk;
 };
 
-export { writeChunkEnd, writeChunkStart, writeChunk };
+export { writeChunkIEND, writeChunkIHDR, writeChunkIDAT };
