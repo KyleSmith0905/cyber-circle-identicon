@@ -1,8 +1,7 @@
 import options from './hashing';
 import createPNG from './render';
 import setElements from './physics';
-import { AdditionalOptions } from './interface';
-import { fillIncompleteOptions, overrideData } from './utils';
+import type { GradientData, ElementData, CircleData, AdditionalOptions, OverrideOptions, ColorData, CompressionOptions } from './interface';
 import { Buffer } from 'buffer';
 
 /**
@@ -53,4 +52,4 @@ const createIdenticon = (key: string, additionalOptions: AdditionalOptions = {})
 };
 
 
-export { createIdenticon };
+export type { GradientData, ElementData, CircleData, AdditionalOptions, OverrideOptions, ColorData, CompressionOptions };

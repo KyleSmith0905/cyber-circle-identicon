@@ -39,4 +39,4 @@ interface AdditionalOptions {
 	smoothEdges?: number;
 }
 
-export type { GradientData, ElementData, CircleData, AdditionalOptions, OverrideOptions, ColorData };
+export type { GradientData, ElementData, CircleData, AdditionalOptions, OverrideOptions, ColorData, CompressionOptions};
