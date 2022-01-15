@@ -1,6 +1,6 @@
 {
   "name": "cyber-circle-identicon",
-  "version": "1.0.0",
+  "version": "0.2.0",
   "description": "Cyber Circle are circles containing a variety of randomly spaced circles inside. Cyber circles are generated using text, input a text to have it generate a Cyber Circle.",
   "main": "dist/index.js",
   "scripts": {
