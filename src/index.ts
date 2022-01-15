@@ -14,6 +14,7 @@ import { Buffer } from 'buffer';
  * @param {number} [additionalOptions.compression=6] The compression level of the image, this corresponds with zlib compression.
  * @param {number} [additionalOptions.smoothEdges=1] how much to smooth the edges of each element. This is synonymous to adding anti-aliasing.
  * @param {object} [additionalOptions.overrideData] Overrides the default data, this is great for platforms with themes.
+ * @returns A buffer of the cyber circle in PNG format.
  * @example
  * 
  * ```
@@ -36,7 +37,6 @@ import { Buffer } from 'buffer';
  *   }
  * });
  * ```
- * @returns A buffer of the cyber circle in PNG format.
  */
 const createIdenticon = (key: string, additionalOptions: AdditionalOptions = {}): Buffer => {
 	validateKey(key);
@@ -63,9 +63,58 @@ const createIdenticon = (key: string, additionalOptions: AdditionalOptions = {})
 	}
 };
 
+/**
+ * Generates circle data from a string. This is generated the same way as the identicon.
+ * @param {string} key The key to generate the circle data from. This could be someone's username.
+ * @returns {object} The circle data, this could be fed into the `overrideData` option to render an identicon.
+ * @example
+ * const username = 'Hello World!';
+ * 
+ * // Returns a circle data object
+ * const circleData = createIdenticon(username);
+ * 
+ * console.log(circleData); // ...
+ * // {
+ * //   foregroundColors: {
+ * //     start: { r: 112, g: 240, b: 128 },
+ * //     end: { r: 48, g: 176, b: 16 },
+ * //     rotation: 0
+ * //   },
+ * //   backgroundColors: {
+ * //     start: { r: 96, g: 80, b: 112 },
+ * //     end: { r: 240, g: 240, b: 16 },
+ * //     rotation: 2.356
+ * //   },
+ * //   elements: [
+ * //     { r: 0.380, x: 0.401, y: 0.651 },
+ * //     { r: 0.341, x: 0.523, y: 0.224 },
+ * //     { r: 0.311, x: 0.764, y: 0.601 },
+ * //     { r: 0.237, x: 0.247, y: 0.361 }
+ * //   ]
+ * // }
+ * 
+ */
+const getCircleOptions = (key: string): CircleData => {
+	validateKey(key);
+
+	try {
+		let circleData = options(key);
+
+		circleData.elements = setElements(circleData.elements);
+
+		return circleData;
+	}
+	catch (e) {
+		const error = new Error();
+		error.name = 'Cyber Circle Identicon';
+		error.message = 'An error occured while generating a cyber circle identicon.';
+		error.stack = e.stack;
+		throw error;
+	}
 };
 
 export default createIdenticon;
 
+export { getCircleOptions };
 
 export type { GradientData, ElementData, CircleData, AdditionalOptions, OverrideOptions, ColorData, CompressionOptions };
