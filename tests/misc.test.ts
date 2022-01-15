@@ -7,7 +7,8 @@ describe('Miscellaneous', () => {
 		const circleOptions = {};
 		
 		fillIncompleteOptions(circleOptions);
-
+		
+		ADDITIONAL_OPTIONS.smoothEdges = 2;
 		expect(circleOptions).toEqual(ADDITIONAL_OPTIONS);
 	});
 
