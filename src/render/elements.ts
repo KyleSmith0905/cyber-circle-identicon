@@ -8,6 +8,7 @@ const drawElement = (buffer: Buffer, colors: GradientData, element: ElementData,
 	const circleSize = element.r * size;
 	const circleOffsetX = Math.round(element.x * size - circleSize * 0.5);
 	const circleOffsetY = Math.round(element.y * size - circleSize * 0.5);
+	if (circleOffsetX + circleSize > size || circleOffsetY + circleSize > size || circleOffsetX < 0 || circleOffsetY < 0) return;
 
 	const pixelSize = clipped ? 4 : 3;
 	const rowSize = size * pixelSize + 1;
