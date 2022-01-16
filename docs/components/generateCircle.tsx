@@ -1,4 +1,4 @@
-import { FunctionComponent, useEffect, useState } from 'react';
+import { FunctionComponent, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import { fillGradientNaming, rgbToBrightness } from '../lib/color';
 import { colorDataToString, colorStringToData, fillColorData } from '../lib/utils';
@@ -58,8 +58,6 @@ const GenerateCircle: FunctionComponent = () => {
 			const identicon = document.getElementById('IdenticonImage') as HTMLImageElement;
 			const download = document.getElementById('DownloadIdenticon') as HTMLAnchorElement;
 			if (!identicon || !download) return;
-			
-
 
 			download.href = identicon.src = getIdenticonSrc();
 			processingIdenticon = false;
@@ -205,7 +203,7 @@ const GenerateCircle: FunctionComponent = () => {
 						foregroundColorOpen = !foregroundColorOpen;
 						e.currentTarget.style.backgroundColor = foregroundColorOpen ? 'var(--trenaryColor)' : 'var(--primaryColor)';
 						overrideOptions.foregroundColors = {};
-						const wrap = document.getElementById('ForegroundWrap')
+						const wrap = document.getElementById('ForegroundWrap');
 						if (wrap) wrap.style.setProperty('display', foregroundColorOpen ? 'contents' : 'none');
 					}}
 				>
@@ -220,10 +218,10 @@ const GenerateCircle: FunctionComponent = () => {
 						backgroundColorOpen = !backgroundColorOpen;
 						e.currentTarget.style.backgroundColor = backgroundColorOpen ? 'var(--trenaryColor)' : 'var(--primaryColor)';
 						overrideOptions.backgroundColors = {};
-						const wrap = document.getElementById('BackgroundWrap')
+						const wrap = document.getElementById('BackgroundWrap');
 						if (wrap) wrap.style.setProperty('display', backgroundColorOpen ? 'contents' : 'none');
 					}}
-					>
+				>
 					Background Color: {fillGradientNaming(circleOptions.backgroundColors, overrideOptions.backgroundColors)}
 				</button>
 				<span id='BackgroundWrap' style={{display: 'none'}}>

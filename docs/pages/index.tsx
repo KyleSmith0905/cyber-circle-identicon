@@ -15,15 +15,15 @@ const Home: NextPage = () => {
 				<pre><code>npm install cyber-circle-identicon</code></pre>
 				<p>With the package install, you could import it into your code and use it like this:</p>
 				<pre>
-					import {'{'} createIdenticon {'}'} from 'cyber-circle-identicon';{'\n'}
+					import {'{'} createIdenticon {'}'} from {'\''}cyber-circle-identicon{'\''};{'\n'}
 					{'\n'}
-					const userIdenticon = createIdenticon('Hello World!');
+					const userIdenticon = createIdenticon({'\''}Hello World!{'\''});
 				</pre>
 				<p>Options could be feed through the second parameter like this:</p>
 				<pre>
-					import {'{'} createIdenticon {'}'} from 'cyber-circle-identicon';{'\n'}
+					import {'{'} createIdenticon {'}'} from {'\''}cyber-circle-identicon{'\''};{'\n'}
 					{'\n'}
-					const userIdenticon = createIdenticon('Hello World!', {'{'}{'\n'}
+					const userIdenticon = createIdenticon({'\''}Hello World!{'\''}, {'{'}{'\n'}
 					{'\t'}size: 128,{'\n'}
 					{'\t'}compression: 1,{'\n'}
 					{'\t'}clipped: false,{'\n'}
