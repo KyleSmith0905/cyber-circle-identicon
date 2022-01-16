@@ -1,11 +1,5 @@
-import { GetServerSideProps, NextPage } from 'next';
+import { NextPage } from 'next';
 import GenerateCircle from '../components/generateCircle';
-
-export const getServerSideProps: GetServerSideProps = async () => {
-	return {
-		props: {},
-	};
-};
 
 const Home: NextPage = () => {
 
