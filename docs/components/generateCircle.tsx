@@ -192,8 +192,7 @@ const GenerateCircle: FunctionComponent = () => {
 				<button className='Button' style={{backgroundColor: 'var(--trenaryColor)'}}
 					onClick={(e) => {
 						clipped = !clipped;
-						if (clipped) e.currentTarget.style.setProperty('background-color', 'var(--trenaryColor)');
-						else e.currentTarget.style.setProperty('background-color', 'var(--primaryColor)');
+						e.currentTarget.style.backgroundColor = clipped ? 'var(--trenaryColor)' : 'var(--primaryColor)';
 						reloadIdenticon();
 					}}
 				>
@@ -202,7 +201,8 @@ const GenerateCircle: FunctionComponent = () => {
 			</div>
 			<div className='PillButtons'>
 				<button id='GradientNamingForeground' className='Button'
-					onClick={(e) => {
+					style={{backgroundColor: foregroundColorOpen ? 'var(--primaryColor)' : 'var(--trenaryColor)'}}
+					onClick={() => {
 						setForegroundColorOpen(!foregroundColorOpen);
 						overrideOptions.foregroundColors = {};
 					}}
@@ -213,7 +213,8 @@ const GenerateCircle: FunctionComponent = () => {
 					<ColorInput	reloadIdenticon={reloadIdenticon}	place='Foreground'/>
 				}
 				<button id='GradientNamingBackground' className='Button'
-					onClick={(e) => {
+					style={{backgroundColor: foregroundColorOpen ? 'var(--primaryColor)' : 'var(--trenaryColor)'}}
+					onClick={() => {
 						setBackgroundColorOpen(!backgroundColorOpen);
 						overrideOptions.backgroundColors = {};
 					}}
@@ -223,9 +224,6 @@ const GenerateCircle: FunctionComponent = () => {
 				{backgroundColorOpen && 
 					<ColorInput reloadIdenticon={reloadIdenticon} place='Background'/>
 				}
-			</div>
-			<div className='PillButtons'>
-
 			</div>
 			<div className='MarginCentered'>
 				<ImageComponent src={getIdenticonSrc()} size={256}/>
