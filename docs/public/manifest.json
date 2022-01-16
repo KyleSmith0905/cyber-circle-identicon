@@ -1,0 +1,34 @@
+{
+  "author": "KyleSmith0905",
+  "short_name": "CCIdenticons",
+  "name": "Cyber Circle Identicons Documentation.",
+  "version": "1.0.0",
+  "description": "Cyber Circle are circles containing a variety of randomly spaced circles inside. Cyber circles are generated using text, input a text to have it generate a Cyber Circle.",
+  "default_locale": "en",
+  "icons": [
+    {
+      "src": "icons/favicon.ico",
+      "type": "image/x-icon",
+      "sizes": "16x16 32x32 64x64 128x128"
+    },
+    {
+      "src": "icons/logo128.png",
+      "type": "image/png",
+      "sizes": "128x128"
+    },
+    {
+      "src": "icons/logo192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "icons/logo512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#ffffff",
+  "background_color": "#ffffff"
+}
