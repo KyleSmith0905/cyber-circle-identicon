@@ -143,7 +143,7 @@ const GenerateCircle: FunctionComponent = () => {
 	return (
 		<>
 			<div className='PillButtons'>
-				<input type='text' className='Button' style={{width: '100%'}} onInput={e => {
+				<input type='text' className='Button' defaultValue='insert your name here' style={{width: '100%'}} onInput={e => {
 					key = e.currentTarget.value;
 					circleOptions = getCircleOptions(key);
 					for (let i = 0; i < 2; i++) {
