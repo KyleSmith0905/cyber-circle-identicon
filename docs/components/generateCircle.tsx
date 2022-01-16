@@ -6,94 +6,20 @@ import createIdenticon, { getCircleOptions, OverrideOptions, CompressionOptions,
 
 const ImageComponent = dynamic(() => import('./circleImage'), {ssr: false});
 
-let circleOptions = getCircleOptions('insert your name here');
-let overrideOptions: {
-	backgroundColors: Partial<GradientData>,
-	foregroundColors: Partial<GradientData>
-} = {backgroundColors: {}, foregroundColors: {}};
-let key = 'insert your name here';
-
-const ColorInput: FunctionComponent<{reloadIdenticon: () => void, place: string}> = ({reloadIdenticon, place}) => {
-
-	const elementId = place === 'Foreground' ? 'GradientNamingForeground' : 'GradientNamingBackground';
-	const propName = place === 'Foreground' ? 'foregroundColors' : 'backgroundColors';
-	const overrideColor = overrideOptions[propName];
-
-	useEffect(() => {
-		setTextStyle('start');
-		setTextStyle('end');
-	});
-
-	const localColorDataToString = (prop: string) => {
-		return colorDataToString(fillColorData(circleOptions[propName][prop], overrideColor[prop]));
-	};
-
-	const setNameButton = () => {
-		const button = document.getElementById(elementId) as HTMLButtonElement;
-		if (button === null) return;
-
-		button.innerText = place + ' Color: '+ fillGradientNaming(circleOptions[propName], overrideColor);
-	};
-
-	const setTextStyle = (position: string) => {
-		const sliderText = document.getElementById(position + place);
-		if (!sliderText) return;
-		const textColor = rgbToBrightness(fillColorData(circleOptions[propName][position], overrideColor[position])) > 50 ? '#000000' : '#FFFFFF';
-		sliderText.style.color = textColor;
-	};
-
-	return (
-		<>
-			<div className='InputContainer'>
-				<input type='color' className='Button'
-					style={{backgroundColor: localColorDataToString('start')}}
-					value={localColorDataToString('start')}
-					onInput={(e) => {
-						e.currentTarget.style.setProperty('background-color', e.currentTarget.value);
-						overrideColor.start = colorStringToData(e.currentTarget.value);
-						setNameButton();
-						setTextStyle('start');
-						reloadIdenticon();
-					}}
-				/>
-				<p id={'start' + place} className='MergeBefore' style={{}}>Start Color</p>
-			</div>
-			<div className='InputContainer'>
-				<input type='color' className='Button'
-					style={{backgroundColor: localColorDataToString('end')}}
-					value={localColorDataToString('end')}
-					onInput={(e) => {
-						e.currentTarget.style.setProperty('background-color', e.currentTarget.value);
-						overrideColor.end = colorStringToData(e.currentTarget.value);
-						setNameButton();
-						setTextStyle('end');
-						reloadIdenticon();
-					}}
-				/>
-				<p id={'end' + place} className='MergeBefore'>End Color</p>
-			</div>
-			<div className='InputContainer'>
-				<input type='range' className='Button'
-					min='0' max={Math.PI * 2 - Math.PI * 0.25 + Number.EPSILON * 2} step={Math.PI * 0.25}
-					onInput={(e) => {
-						overrideColor.rotation = parseFloat(e.currentTarget.value);
-						reloadIdenticon();
-					}}
-				/>
-				<p className='MergeBefore'>Rotation</p>
-			</div>
-		</>
-	);
-};
-
 const GenerateCircle: FunctionComponent = () => {
 	
+	let circleOptions = getCircleOptions('insert your name here');
+	let overrideOptions: {
+		backgroundColors: Partial<GradientData>,
+		foregroundColors: Partial<GradientData>
+	} = {backgroundColors: {}, foregroundColors: {}};
+	let key = 'insert your name here';
 	let compression: CompressionOptions = 6;
 	let size = 256;
 	let smoothEdges = 1;
 	let clipped = true;
-	const [foregroundColorOpen, setForegroundColorOpen] = useState(false);
-	const [backgroundColorOpen, setBackgroundColorOpen] = useState(false);
+	let foregroundColorOpen = false;
+	let backgroundColorOpen = false;
 
 	const getIdenticonSrc = (): string => {
 		const overrideData: OverrideOptions = {
@@ -133,10 +59,84 @@ const GenerateCircle: FunctionComponent = () => {
 			const download = document.getElementById('DownloadIdenticon') as HTMLAnchorElement;
 			if (!identicon || !download) return;
 			
+
+
 			download.href = identicon.src = getIdenticonSrc();
 			processingIdenticon = false;
 			if (hasQueue === true) reloadIdenticon();
 		});
+	};
+
+	const ColorInput: FunctionComponent<{place: string}> = ({place}) => {
+
+		const elementId = place === 'Foreground' ? 'GradientNamingForeground' : 'GradientNamingBackground';
+		const propName = place === 'Foreground' ? 'foregroundColors' : 'backgroundColors';
+	
+		useEffect(() => {
+			setTextStyle('start');
+			setTextStyle('end');
+		});
+	
+		const localColorDataToString = (prop: string) => {
+			return colorDataToString(fillColorData(circleOptions[propName][prop],  overrideOptions[propName][prop]));
+		};
+	
+		const setNameButton = () => {
+			const button = document.getElementById(elementId) as HTMLButtonElement;
+			if (button === null) return;
+	
+			button.innerText = place + ' Color: '+ fillGradientNaming(circleOptions[propName],  overrideOptions[propName]);
+		};
+	
+		const setTextStyle = (position: string) => {
+			const sliderText = document.getElementById(position + place);
+			if (!sliderText) return;
+			const textColor = rgbToBrightness(fillColorData(circleOptions[propName][position],  overrideOptions[propName][position])) > 50 ? '#000000' : '#FFFFFF';
+			sliderText.style.color = textColor;
+		};
+	
+		return (
+			<>
+				<div className='InputContainer'>
+					<input type='color' className='Button'
+						style={{backgroundColor: localColorDataToString('start')}}
+						value={localColorDataToString('start')}
+						onInput={(e) => {
+							e.currentTarget.style.setProperty('background-color', e.currentTarget.value);
+							overrideOptions[propName].start = colorStringToData(e.currentTarget.value);
+							setNameButton();
+							setTextStyle('start');
+							reloadIdenticon();
+						}}
+					/>
+					<p id={'start' + place} className='MergeBefore'>Start Color</p>
+				</div>
+				<div className='InputContainer'>
+					<input type='color' className='Button'
+						style={{backgroundColor: localColorDataToString('end')}}
+						value={localColorDataToString('end')}
+						onInput={(e) => {
+							e.currentTarget.style.setProperty('background-color', e.currentTarget.value);
+							overrideOptions[propName].end = colorStringToData(e.currentTarget.value);
+							setNameButton();
+							setTextStyle('end');
+							reloadIdenticon();
+						}}
+					/>
+					<p id={'end' + place} className='MergeBefore'>End Color</p>
+				</div>
+				<div className='InputContainer'>
+					<input type='range' className='Button'
+						min='0' max={Math.PI * 2 - Math.PI * 0.25 + Number.EPSILON * 2} step={Math.PI * 0.25}
+						onInput={(e) => {
+							overrideOptions[propName].rotation = parseFloat(e.currentTarget.value);
+							reloadIdenticon();
+						}}
+					/>
+					<p className='MergeBefore'>Rotation</p>
+				</div>
+			</>
+		);
 	};
 
 	return (
@@ -200,29 +200,35 @@ const GenerateCircle: FunctionComponent = () => {
 			</div>
 			<div className='PillButtons'>
 				<button id='GradientNamingForeground' className='Button'
-					style={{backgroundColor: foregroundColorOpen ? 'var(--primaryColor)' : 'var(--trenaryColor)'}}
-					onClick={() => {
-						setForegroundColorOpen(!foregroundColorOpen);
+					style={{backgroundColor: 'var(--primaryColor)'}}
+					onClick={(e) => {
+						foregroundColorOpen = !foregroundColorOpen;
+						e.currentTarget.style.backgroundColor = foregroundColorOpen ? 'var(--trenaryColor)' : 'var(--primaryColor)';
 						overrideOptions.foregroundColors = {};
+						const wrap = document.getElementById('ForegroundWrap')
+						if (wrap) wrap.style.setProperty('display', foregroundColorOpen ? 'contents' : 'none');
 					}}
 				>
 					Foreground Color: {fillGradientNaming(circleOptions.foregroundColors, overrideOptions.foregroundColors)}
 				</button>
-				{foregroundColorOpen && 
-					<ColorInput	reloadIdenticon={reloadIdenticon}	place='Foreground'/>
-				}
+				<span id='ForegroundWrap' style={{display: 'none'}}>
+					<ColorInput	place='Foreground'/>
+				</span>
 				<button id='GradientNamingBackground' className='Button'
-					style={{backgroundColor: foregroundColorOpen ? 'var(--primaryColor)' : 'var(--trenaryColor)'}}
-					onClick={() => {
-						setBackgroundColorOpen(!backgroundColorOpen);
+					style={{backgroundColor: 'var(--primaryColor)'}}
+					onClick={(e) => {
+						backgroundColorOpen = !backgroundColorOpen;
+						e.currentTarget.style.backgroundColor = backgroundColorOpen ? 'var(--trenaryColor)' : 'var(--primaryColor)';
 						overrideOptions.backgroundColors = {};
+						const wrap = document.getElementById('BackgroundWrap')
+						if (wrap) wrap.style.setProperty('display', backgroundColorOpen ? 'contents' : 'none');
 					}}
-				>
+					>
 					Background Color: {fillGradientNaming(circleOptions.backgroundColors, overrideOptions.backgroundColors)}
 				</button>
-				{backgroundColorOpen && 
-					<ColorInput reloadIdenticon={reloadIdenticon} place='Background'/>
-				}
+				<span id='BackgroundWrap' style={{display: 'none'}}>
+					<ColorInput place='Background'/>
+				</span>
 			</div>
 			<div className='MarginCentered'>
 				<ImageComponent src={getIdenticonSrc()}/>
