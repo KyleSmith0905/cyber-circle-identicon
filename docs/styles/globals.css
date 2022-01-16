@@ -14,7 +14,7 @@ body {
 	font-family: var(--fonts);
 }
 
-a {
+.Button a {
 	color: inherit;
 	text-decoration: none;
 }
@@ -126,4 +126,10 @@ input[type=range] {
 .InputContainer > p {
 	margin: 0;
 	text-align: center;
+}
+
+pre {
+	border: var(--trenaryColor) solid 0.2212em;
+	padding: 0.9em 1.3em;
+	border-radius: 1em;
 }
