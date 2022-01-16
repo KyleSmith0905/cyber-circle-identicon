@@ -4,8 +4,7 @@ import { fillGradientNaming, rgbToBrightness } from '../lib/color';
 import { colorDataToString, colorStringToData, fillColorData } from '../lib/utils';
 import createIdenticon, { getCircleOptions, OverrideOptions, CompressionOptions, GradientData } from 'cyber-circle-identicon';
 
-const ImageComponent = dynamic(() => import('./circleImage'), {ssr: false});	
-
+const ImageComponent = dynamic(() => import('./circleImage'), {ssr: false});
 
 let circleOptions = getCircleOptions('insert your name here');
 let overrideOptions: {
@@ -226,7 +225,7 @@ const GenerateCircle: FunctionComponent = () => {
 				}
 			</div>
 			<div className='MarginCentered'>
-				<ImageComponent src={getIdenticonSrc()} size={256}/>
+				<ImageComponent src={getIdenticonSrc()}/>
 			</div>
 			<div className='PillButtons'>
 				<a id='DownloadIdenticon' className='Button' download={true}>
