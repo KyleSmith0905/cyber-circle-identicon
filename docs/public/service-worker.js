@@ -1,24 +1,46 @@
-let CACHE_NAME = 'ccidenticon-docs-cache-v1';
+const PRECACHE = 'precache-v1';
+const RUNTIME = 'runtime';
 
-self.addEventListener('fetch', function(event) {
-  event.respondWith(
-    caches.match(event.request).then(function(response) {
-      if (response) return response;
-      
-      return fetch(event.request).then(function(response) {
-        if (!response || response.status !== 200 || response.type !== 'basic') {
-          return response;
+const PRECACHE_URLS = ['./'];
+
+self.addEventListener('install', event => {
+  event.waitUntil(
+    caches.open(PRECACHE)
+      .then(cache => cache.addAll(PRECACHE_URLS))
+      .then(self.skipWaiting())
+  );
+});
+
+self.addEventListener('activate', event => {
+  const currentCaches = [PRECACHE, RUNTIME];
+  event.waitUntil(
+    caches.keys().then(cacheNames => {
+      return cacheNames.filter(cacheName => !currentCaches.includes(cacheName));
+    })
+		.then(cachesToDelete => {
+      return Promise.all(cachesToDelete.map(cacheToDelete => {
+        return caches.delete(cacheToDelete);
+      }));
+    }).then(() => self.clients.claim())
+  );
+});
+
+self.addEventListener('fetch', event => {
+  if (event.request.url.startsWith(self.location.origin)) {
+    event.respondWith(
+      caches.match(event.request).then(cachedResponse => {
+        if (cachedResponse) {
+          return cachedResponse;
         }
 
-        let responseToCache = response.clone();
-
-        caches.open(CACHE_NAME).then(function(cache) {
-          if (!event.request.url.startsWith('http')) return;
-          cache.put(event.request, responseToCache);
+        return caches.open(RUNTIME).then(cache => {
+          return fetch(event.request).then(response => {
+            return cache.put(event.request, response.clone()).then(() => {
+              return response;
+            });
+          });
         });
-
-        return response;
-      });
-    })
-  );
+      })
+    );
+  }
 });
