@@ -146,16 +146,10 @@ const GenerateCircle: FunctionComponent = () => {
 				<input type='text' className='Button' defaultValue='insert your name here' style={{width: '100%'}} onInput={e => {
 					key = e.currentTarget.value;
 					circleOptions = getCircleOptions(key);
-					for (let i = 0; i < 2; i++) {
-						for (let j = 0; j < 2; j++) {
-							const position = ['start', 'end'][i];
-							const place = ['Foreground', 'Background'][j];
-							const propName = ['foregroundColors', 'backgroundColors'][j];
-							const button = document.getElementById(position + place) as HTMLButtonElement;
-							if (button === null) continue;
-							button.innerText = place + ' Color: '+ fillGradientNaming(circleOptions[propName], overrideOptions[propName]);
-						}
-					}
+					const button1 = document.getElementById('GradientNamingForeground') as HTMLButtonElement;
+					const button2 = document.getElementById('GradientNamingBackground') as HTMLButtonElement;
+					if (button1) button1.innerText = 'Foreground Color: ' + fillGradientNaming(circleOptions.foregroundColors, overrideOptions.foregroundColors);
+					if (button2) button2.innerText = 'Background Color: ' + fillGradientNaming(circleOptions.backgroundColors, overrideOptions.backgroundColors);
 					reloadIdenticon();
 					getCircleOptions(key);
 				}}/>
@@ -211,9 +205,6 @@ const GenerateCircle: FunctionComponent = () => {
 					onClick={(e) => {
 						setForegroundColorOpen(!foregroundColorOpen);
 						overrideOptions.foregroundColors = {};
-						e.currentTarget.innerText = 'Foreground Color: '+ fillGradientNaming(circleOptions.foregroundColors, overrideOptions.foregroundColors);
-						if (foregroundColorOpen) e.currentTarget.style.setProperty('background-color', 'var(--primaryColor)');
-						else e.currentTarget.style.setProperty('background-color', 'var(--trenaryColor)');
 					}}
 				>
 					Foreground Color: {fillGradientNaming(circleOptions.foregroundColors, overrideOptions.foregroundColors)}
@@ -225,9 +216,6 @@ const GenerateCircle: FunctionComponent = () => {
 					onClick={(e) => {
 						setBackgroundColorOpen(!backgroundColorOpen);
 						overrideOptions.backgroundColors = {};
-						e.currentTarget.innerText = 'Background Color: '+ fillGradientNaming(circleOptions.backgroundColors, overrideOptions.backgroundColors);
-						if (backgroundColorOpen) e.currentTarget.style.setProperty('background-color', 'var(--primaryColor)');
-						else e.currentTarget.style.setProperty('background-color', 'var(--trenaryColor)');
 					}}
 				>
 					Background Color: {fillGradientNaming(circleOptions.backgroundColors, overrideOptions.backgroundColors)}
