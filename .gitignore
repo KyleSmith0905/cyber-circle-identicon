@@ -7,3 +7,6 @@ coverage/
 # Builds
 dist/
 .next/
+
+# Hosting
+.vercel
