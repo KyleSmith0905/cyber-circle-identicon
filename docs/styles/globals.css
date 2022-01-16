@@ -1,4 +1,20 @@
-@import url('https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400;0,700;1,400&display=swap');
+@font-face {
+  font-family: 'cabin';
+  src: url('/fonts/Cabin-Regular.ttf');
+	font-display: block;
+}
+
+@font-face {
+  font-family: 'cabin';
+  src: url('/fonts/Cabin-Bold.ttf');
+	font-weight: bold;
+}
+
+@font-face {
+  font-family: 'cabin';
+  src: url('/fonts/Cabin-Italic.ttf');
+	font-style: italic;
+}
 
 html {
 	--primaryColor: hsl(0, 0%, 100%);
