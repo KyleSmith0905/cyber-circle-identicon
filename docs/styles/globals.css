@@ -30,7 +30,7 @@ body {
 	font-family: var(--fonts);
 }
 
-.Button a {
+a.Button {
 	color: inherit;
 	text-decoration: none;
 }
