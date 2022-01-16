@@ -1,4 +1,5 @@
 import { ColorData, GradientData } from 'cyber-circle-identicon';
+import crypto from 'crypto';
 
 const colorStringToData = (colorString: string): ColorData => {
 	const formatColor = (index: number) => parseInt(colorString.substring(index, index + 2), 16);
@@ -40,4 +41,8 @@ const fillGradientData = (colorData: GradientData, colorDataOptional?: Partial<G
 	return colorData;
 };
 
-export { colorDataToString, colorStringToData, colorSeparator, fillColorData, fillGradientData };
+const randomUTF8 = () => {
+	return crypto.randomBytes(8).toString('utf8');
+};
+
+export { colorDataToString, colorStringToData, colorSeparator, fillColorData, fillGradientData, randomUTF8 };
