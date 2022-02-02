@@ -2,11 +2,11 @@ import { Buffer } from 'buffer';
 import { UNSIGNED_INTEGER_MAX } from './hashing/constants';
 import { AdditionalOptions, CircleData, OverrideOptions } from './interface';
 
-const validateKey = (key: string): void => {
-	if (typeof(key) !== 'string') {
+const validateKey = (key: string | Buffer): void => {
+	if (!(key instanceof Buffer) && typeof(key) !== 'string') {
 		const error = new Error();
 		error.name = 'Cyber Circle Identicon';
-		error.message = 'The key must be a string.';
+		error.message = 'The key must be a string or a Buffer.';
 		throw error;
 	}
 };

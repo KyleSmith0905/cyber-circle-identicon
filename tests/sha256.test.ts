@@ -21,4 +21,8 @@ describe('SHA-256', () => {
 	test('Hash of foreign languages', () => {
 		expect(sha256('你好世界 مرحبا بالعالم Γειά σου Κόσμε')).toBe('9b3b1757e82656f7dc49fd3f6679d9436867b9a028ec27b3b80f3f4c484d666f');
 	});
+
+	test('Hash of buffer', () => {
+		expect(sha256(Buffer.from('hello world'))).toBe(STANDARD_HASH);
+	});
 });

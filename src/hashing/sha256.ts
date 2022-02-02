@@ -15,10 +15,10 @@ const formatBuffer = (buffer: Buffer): Buffer => {
 	return newBuffer;
 };
 
-const sha256 = (text: string): string => {
+const sha256 = (text: string | Buffer): string => {
 	const hashValue = DEFAULT_HASH_VALUES.slice();
 	
-	let buffer = Buffer.from(text, 'utf8');
+	let buffer = text instanceof Buffer ? text : Buffer.from(text, 'utf8');
 	buffer = formatBuffer(buffer);
 	const chunks = bufferToChunks(buffer, 64);
 

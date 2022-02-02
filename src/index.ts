@@ -7,7 +7,7 @@ import { Buffer } from 'buffer';
 
 /**
  * Returns a PNG buffer of a cyber circle generated from a string.
- * @param {string} key The key to generate the PNG from. This could be someone's username.
+ * @param {string | Buffer} key The key to generate the PNG from. This could be someone's username.
  * @param {object} [additionalOptions] Additional options.
  * @param {number} [additionalOptions.size=256] The size of the image.
  * @param {boolean} [additionalOptions.clipped=true] Whether the image should be clipped to a circle, this should be false if your platform typically clips images to a circle.
@@ -38,7 +38,7 @@ import { Buffer } from 'buffer';
  * });
  * ```
  */
-const createIdenticon = (key: string, additionalOptions: AdditionalOptions = {}): Buffer => {
+const createIdenticon = (key: string | Buffer, additionalOptions: AdditionalOptions = {}): Buffer => {
 	validateKey(key);
 	validateOptions(additionalOptions);
 	fillIncompleteOptions(additionalOptions);
@@ -65,7 +65,7 @@ const createIdenticon = (key: string, additionalOptions: AdditionalOptions = {})
 
 /**
  * Generates circle data from a string. This is generated the same way as the identicon.
- * @param {string} key The key to generate the circle data from. This could be someone's username.
+ * @param {string | Buffer} key The key to generate the circle data from. This could be someone's username.
  * @returns {object} The circle data, this could be fed into the `overrideData` option to render an identicon.
  * @example
  * const username = 'Hello World!';
@@ -94,7 +94,7 @@ const createIdenticon = (key: string, additionalOptions: AdditionalOptions = {})
  * // }
  * 
  */
-const getCircleOptions = (key: string): CircleData => {
+const getCircleOptions = (key: string | Buffer): CircleData => {
 	validateKey(key);
 
 	try {
