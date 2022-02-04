@@ -9,7 +9,9 @@
     "build": "npm run build:types && npm run build:js",
     "build:types": "tsc --emitDeclarationOnly",
     "build:js": "babel src --out-dir dist --extensions \".ts,.tsx\"",
-    "lint": "eslint **/*.ts --ignore-pattern node_modules/ --fix"
+    "lint": "eslint **/*.ts --ignore-pattern node_modules/ --fix",
+    "docs:dev": "cd docs && npm run dev",
+    "docs:start": "cd docs && npm run start"
   },
   "keywords": [
     "icon",
