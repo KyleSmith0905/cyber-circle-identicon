@@ -111,8 +111,9 @@ const getCircleOptions = (key: BinaryLike): CircleData => {
 	}
 };
 
-export default createIdenticon;
-
-export { getCircleOptions };
+export {
+	createIdenticon,
+	getCircleOptions,
+};
 
 export type { GradientData, ElementData, CircleData, AdditionalOptions, OverrideOptions, ColorData, CompressionOptions };
