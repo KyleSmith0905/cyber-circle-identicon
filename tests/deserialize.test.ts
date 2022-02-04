@@ -1,4 +1,4 @@
-import deserialize from '../src/hashing/deserialize';
+import deserialize from '../src/deserializing/deserialize';
 import { CIRCLE_OPTIONS, STANDARD_HASH } from './constants';
 
 describe('Deserialize Hash', () => {

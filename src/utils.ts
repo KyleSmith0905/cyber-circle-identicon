@@ -1,15 +1,6 @@
 import { Buffer } from 'buffer';
-import { UNSIGNED_INTEGER_MAX } from './hashing/constants';
+import { UNSIGNED_INTEGER_MAX } from './deserializing/constants';
 import { AdditionalOptions, CircleData, OverrideOptions } from './interface';
-
-const validateKey = (key: string | Buffer): void => {
-	if (!(key instanceof Buffer) && typeof(key) !== 'string') {
-		const error = new Error();
-		error.name = 'Cyber Circle Identicon';
-		error.message = 'The key must be a string or a Buffer.';
-		throw error;
-	}
-};
 
 const validateOptions = (additionalOptions: AdditionalOptions): void => {
 	const options = additionalOptions;
@@ -66,4 +57,4 @@ const pythagorean = (a: number, b: number): number => {
 	return Math.sqrt(Math.pow(a, 2) + Math.pow(b, 2));
 };
 
-export { validateKey, overrideData, concatStringToBuffer, modulo, pythagorean, fillIncompleteOptions, validateOptions };
+export { overrideData, concatStringToBuffer, modulo, pythagorean, fillIncompleteOptions, validateOptions };
