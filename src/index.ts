@@ -116,4 +116,12 @@ export {
 	getCircleOptions,
 };
 
-export type { GradientData, ElementData, CircleData, AdditionalOptions, OverrideOptions, ColorData, CompressionOptions };
+export type {
+	GradientData,
+	ElementData,
+	CircleData,
+	AdditionalOptions,
+	OverrideOptions,
+	ColorData,
+	CompressionOptions,
+};

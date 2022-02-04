@@ -2,7 +2,7 @@ import { FunctionComponent, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import { fillGradientNaming, rgbToBrightness } from '../lib/color';
 import { colorDataToString, colorStringToData, fillColorData } from '../lib/utils';
-import createIdenticon, { getCircleOptions, OverrideOptions, CompressionOptions, GradientData } from 'cyber-circle-identicon';
+import { createIdenticon, getCircleOptions, OverrideOptions, CompressionOptions, GradientData } from 'cyber-circle-identicon';
 
 const ImageComponent = dynamic(() => import('./circleImage'), {ssr: false});
 
